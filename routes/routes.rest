@@ -1,0 +1,29 @@
+//real all from DB
+GET http://localhost:5000/products
+###
+//read specific item by ID from DB
+Get http://localhost:5000/products/5d5e81e09d13ac26904e6382
+###
+//create an item in the DB
+POST http://localhost:5000/products
+Content-Type: application/json
+
+{
+    "name": "Innis suncream",
+    "description": "Suncream for adults",
+    "price": "12.00",
+    "rating": "4.5",
+    "img": "someimgpath"
+}
+###
+//update an item from the DB
+PATCH http://localhost:5000/products/5d5e81e09d13ac26904e6382
+Content-Type: application/json 
+
+{
+  "name": "Some skin product"
+}
+
+###
+//delete an item by ID from the DB
+DELETE http://localhost:5000/products/THE_ID_HERE
