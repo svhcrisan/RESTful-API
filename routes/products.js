@@ -1,7 +1,8 @@
 // where we will define how the server should handle the data when it receives a GET, POST or PATCH request
 const express = require("express");
 const router = express.Router();
-const Product = require('../models/product')
+const Product = require('../models/product');
+const getProduct = require('../middleware/getProduct');
 
 // Route for getting all products
 router.get('/', async (req, res) => {
@@ -73,21 +74,5 @@ router.delete('/:id', getProduct, async (req, res) => {
         res.status(500).json({ message: err.message })
     }
 })
-
-
-// middleware
-async function getProduct(req, res, next) {
-    try {
-        product = await Product.findById(req.params.id)
-        if (product == null) {
-            return res.status(404).json({ message: "Can't find product" })
-        }
-    } catch (err) {
-        return res.status(500).json({ message: err.message })
-    }
-
-    res.product = product
-    next()
-}
 
 module.exports = router;
